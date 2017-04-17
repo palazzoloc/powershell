@@ -1,0 +1,1 @@
+Get-Content E:\WLLNET\SCRIPTS\SPC-Servers.txt | Set-LocalAdminGroupMembership -Account 'phx\wcs-fese' 

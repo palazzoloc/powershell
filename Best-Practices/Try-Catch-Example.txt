@@ -1,0 +1,37 @@
+<# 
+.SYNOPSIS 
+Queries DNS for servers in a server list (e:\scripts\new-targets.txt)
+ 
+.DESCRIPTION 
+Queries DNS for servers in a server list (e:\scripts\new-targets.txt)
+ 
+.EXAMPLE 
+PS C:\> Query-DNS.ps1
+#> 
+
+#set-executionpolicy Unrestricted
+
+try
+{
+$a = get-content "E:\SCRIPTS\New-Targets.txt"
+    foreach ($i in $a)
+	    {$info = [System.Net.DNS]::GetHostAddresses("$i.northamerica.corp.microsoft.com")
+	      write-host "Name: $i.northamerica.corp.microsoft.com --> IP: $($info.IPAddressToString) "
+	    }
+[Environment]::NewLine
+
+    foreach ($i in $a)
+	    {$info = [System.Net.DNS]::GetHostAddresses("$i.hmdevlab.com")
+	      write-host "Name: $i.hmdevlab.com --> IP: $($info.IPAddressToString) "
+        }
+}
+catch
+{
+    write-host "Caught an exception:" -foregroundColor Red
+    write-host "Exception Type: $($_.Exception.GetType().FullName)” -ForegroundColor Red
+    write-host “Exception Message: $($_.Exception.Message)” -ForegroundColor Yellow
+}
+finally
+{
+    write-host "Finally block reached."
+}

@@ -1,0 +1,5 @@
+FOR /F %i IN (c:\temp\shutdown1.txt) DO shutdown /s /f /d P:1:2 /c "Due to May 2013 Power Outage" /m \\%i
+FOR /F %i IN (c:\temp\shutdown2.txt) DO shutdown /s /f /d P:1:2 /c "Due to May 2013 Power Outage" /m \\%i
+
+FOR /F %i IN (c:\temp\shutdown3.txt) DO cryping -n 1 -p 3389 %i
+FOR /F %i IN (c:\temp\iLO.txt) DO cryping -n 1 -p 80 %i

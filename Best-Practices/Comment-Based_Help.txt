@@ -1,0 +1,18 @@
+function Test-Me($parameter) {
+<#
+.SYNOPSIS
+An example of a function that simply provides Help.
+
+.DESCRIPTION
+This function really does nothing.
+
+.NOTES
+Demonstrates comment based help.
+
+.LINK
+http://website.com
+
+.EXAMPLE
+Test-Me.ps1 "Hello world"
+#>
+}

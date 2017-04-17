@@ -1,0 +1,15 @@
+<#
+Delete files in a folder (and sub-folders) older than 60 days fomr today.
+
+-cpalazzo (found online though)
+
+#>
+
+$limit = (Get-Date).AddDays(-60)
+$path = "E:\MSSQL12.MSSQLSERVER\MSSQL\Backup"
+
+# Delete files older than the $limit.
+Get-ChildItem -Path $path -Recurse -Force | Where-Object { !$_.PSIsContainer -and $_.CreationTime -lt $limit } | Remove-Item -Force
+
+# Delete any empty directories left behind after deleting the old files.
+# Get-ChildItem -Path $path -Recurse -Force | Where-Object { $_.PSIsContainer -and (Get-ChildItem -Path $_.FullName -Recurse -Force | Where-Object { !$_.PSIsContainer }) -eq $null } | Remove-Item -Force -Recurse
